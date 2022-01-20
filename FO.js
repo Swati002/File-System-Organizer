@@ -37,7 +37,8 @@ let command = input[0] // tree, organize, help
 
 switch (command) {
     case 'tree':
-        console.log('Tree Implemented')
+        // console.log('Tree Implemented')
+        treeFn(input[1])
         break;
     case 'organize':
         // console.log('Organize Implemented')
@@ -161,7 +162,7 @@ function treeFn(dirpath) {
         let doesExist = fs.existsSync(dirpath)
             // console.log(doesExist)
         if (doesExist == true) {
-            treeHelper(dirpath)
+            treeHelper(dirpath, " ")
         }
     }
 }
@@ -172,5 +173,20 @@ function treeHelper(targetPath, indent) {
     if (isFile == true) {
         let fileName = path.basename(targetPath)
         console.log(indent + "├──" + fileName)
+    } else {
+        let dirName = path.basename(targetPath);
+        console.log(indent + "└──" + dirName)
+
+        let children = fs.readdirSync(targetPath)
+            // console.log(children)
+            // Here we took out all the children of test folder
+            // 
+
+        for (let i = 0; i < children.length; i++) {
+            let childPath = path.join(targetPath, children[i]);
+            // console.log(childPath)
+            treeHelper(childPath, indent + "\t")
+
+        }
     }
 }
