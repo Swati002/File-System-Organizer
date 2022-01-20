@@ -165,3 +165,11 @@ function treeFn(dirpath) {
         }
     }
 }
+
+
+function treeHelper(targetPath) {
+    let isFile = fs.lstatSync(targetPath).isFile();
+    if (isFile == true) {
+
+    }
+}
