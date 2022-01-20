@@ -149,3 +149,19 @@ function sendFiles(srcFilePath, dest, fileCategory) {
 
     console.log(fileName + "is copied to" + fileCategory)
 }
+
+
+/****************TREE***************/
+function treeFn(dirpath) {
+    // console.log(dirpath)
+    if (dirpath == undefined) {
+        console.log('Please Enter a valid Directory Path')
+        return;
+    } else {
+        let doesExist = fs.existsSync(dirpath)
+            // console.log(doesExist)
+        if (doesExist == true) {
+            treeHelper(dirpath)
+        }
+    }
+}
